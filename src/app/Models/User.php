@@ -2,13 +2,14 @@
 
 namespace App\Models;
 
-use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Contracts\Auth\MustVerifyEmail; // インターフェイスをインポート
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use App\Notifications\VerifyEmailJP;
 
-class User extends Authenticatable
+class User extends Authenticatable implements MustVerifyEmail // インターフェイスを実装
 {
     use HasApiTokens, HasFactory, Notifiable;
 
@@ -41,4 +42,39 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    // profileとのリレーション
+    public function profiles()
+    {
+        return $this->hasOne(Profile::class, 'user_id');
+    }
+
+    // itemとのリレーション
+    public function items()
+    {
+        return $this->hasMany(Item::class, 'seller_id');
+    }
+
+    // 「いいね」機能とのリレーション
+    public function likes()
+    {
+        return $this->hasMany(Like::class, 'user_id');
+    }
+
+    // コメントとのリレーション
+    public function comments()
+    {
+        return $this->hasMany(Comment::class, 'user_id');
+    }
+
+    // 購入情報とのリレーション
+    public function purchase()
+    {
+        return $this->hasOne(Purchase::class, 'user_id');
+    }
+
+    public function sendEmailVerificationNotification()
+    {
+        $this->notify(new VerifyEmailJP);
+    }
 }
