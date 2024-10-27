@@ -11,7 +11,7 @@
                 <div class="form-group mb-4">
                     <label for="name">ユーザー名</label>
                     <input type="text" class="form-control @error('name') is-invalid @enderror" id="name"
-                        name="name" required>
+                        name="name" value="{{ old('name') }}">
                     @error('name')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
@@ -22,8 +22,8 @@
                 <!-- メールアドレス -->
                 <div class="form-group mb-4">
                     <label for="email">メールアドレス</label>
-                    <input type="email" class="form-control @error('email') is-invalid @enderror" id="email"
-                        name="email" required>
+                    <input type="text" class="form-control @error('email') is-invalid @enderror" id="email"
+                        name="email" value="{{ old('email') }}">
                     @error('email')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
@@ -35,7 +35,7 @@
                 <div class="form-group mb-4">
                     <label for="password">パスワード</label>
                     <input type="password" class="form-control @error('password') is-invalid @enderror" id="password"
-                        name="password" required>
+                        name="password">
                     @error('password')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
@@ -45,8 +45,14 @@
 
                 <!-- 確認用パスワード -->
                 <div class="form-group mb-5">
-                    <label for="password-confirm">確認用パスワード</label>
-                    <input type="password" class="form-control" id="password-confirm" name="password_confirmation" required>
+                    <label for="password_confirmation">確認用パスワード</label>
+                    <input type="password" class="form-control @error('password_confirmation') is-invalid @enderror"
+                        id="password_confirmation" name="password_confirmation">
+                    @error('password_confirmation')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror
                 </div>
 
                 <!-- 登録ボタン -->
