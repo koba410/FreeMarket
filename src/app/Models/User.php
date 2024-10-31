@@ -44,9 +44,9 @@ class User extends Authenticatable implements MustVerifyEmail // インターフ
     ];
 
     // profileとのリレーション
-    public function profiles()
+    public function profile()
     {
-        return $this->hasOne(Profile::class, 'user_id');
+        return $this->hasOne(Profile::class, 'user_id','id');
     }
 
     // itemとのリレーション
