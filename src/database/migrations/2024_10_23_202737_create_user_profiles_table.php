@@ -14,8 +14,8 @@ class CreateUserProfilesTable extends Migration
     public function up()
     {
         Schema::create('user_profiles', function (Blueprint $table) {
-            $table->foreignId('user_id')->constrained()->cascadeOnDelete();
-            $table->string('username', 255);
+            $table->id(); // プライマリキーの id カラムを追加,laravelの仕様上、主キーは存在したほうがいいらしい。
+            $table->foreignId('user_id')->constrained()->cascadeOnDelete()->unique();
             $table->string('postal_code', 8);
             $table->string('address', 255);
             $table->string('building', 255)->nullable();
