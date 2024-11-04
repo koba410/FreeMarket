@@ -18,8 +18,12 @@
                         onchange="previewImage(event)">
                     <button type="button" class="btn btn-outline-danger"
                         onclick="document.getElementById('profileImage').click()">画像を選択する</button>
-
                 </div>
+                @error('profile_image')
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                @enderror
             </div>
 
 

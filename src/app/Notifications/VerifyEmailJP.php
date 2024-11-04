@@ -21,9 +21,9 @@ class VerifyEmailJP extends BaseVerifyEmail
         $verificationUrl = $this->verificationUrl($notifiable);
 
         return (new MailMessage)
-            ->subject('メールアドレスの確認')
-            ->line('以下のボタンをクリックして、メールアドレスを確認してください。')
-            ->action('メールアドレスを確認', $verificationUrl)
+            ->subject('メールアドレスの認証')
+            ->line('以下のボタンをクリックして、メールアドレスを認証してください。')
+            ->action('メールアドレスを認証', $verificationUrl)
             ->line('もしこのメールに心当たりがない場合は、何もする必要はありません。');
     }
 

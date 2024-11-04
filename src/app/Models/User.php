@@ -58,7 +58,7 @@ class User extends Authenticatable implements MustVerifyEmail // インターフ
     // 「いいね」機能とのリレーション
     public function likes()
     {
-        return $this->hasMany(Like::class, 'user_id');
+        return $this->belongsToMany(Item::class, 'item_likes', 'user_id', 'item_id');
     }
 
     // コメントとのリレーション

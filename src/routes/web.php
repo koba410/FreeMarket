@@ -34,9 +34,12 @@ Route::post('register', [RegisterController::class, 'register']);
 
 Route::get('login', [LoginController::class, 'showLoginForm'])->name('login');
 Route::post('login', [LoginController::class, 'login']);
+Route::get('logout', [LoginController::class, 'destroy'])->name('logout');
 
+Route::get('/mypage', [UserController::class, 'show'])->name('mypage');
 Route::get('/mypage/profile', [UserController::class, 'edit'])->name('profile.edit');
 Route::put('/mypage/profile', [UserController::class, 'update'])->name('profile.update');
 
-
-Route::get('/', [ItemController::class, 'index'])->name('');
+Route::get('/', [ItemController::class, 'index'])->name('item.list');
+Route::get('/sell', [ItemController::class, 'create'])->name('sell');
+Route::post('/sell', [ItemController::class, 'store'])->name('item.store');

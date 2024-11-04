@@ -22,6 +22,7 @@ class CreateItemsTable extends Migration
             $table->text('description');
             $table->foreignId('item_status_id')->constrained('item_statuses')->cascadeOnDelete();
             $table->string('item_image', 255);
+            $table->boolean('is_sold')->default(false);
             $table->timestamps();
         });
     }
