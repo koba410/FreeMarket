@@ -18,7 +18,38 @@
 
 <body>
     <header class="auth-header w-auto" style="background-color: black">
-        <img class="CoachTech_White" src="{{ asset('svg/logo.svg') }}" alt="SVG Image" style="margin: 25px">
+        <nav class="navbar navbar-expand-lg navbar-dark">
+            <div class="container">
+                <!-- ロゴ -->
+                <a class="navbar-brand" href="{{ route('item.list') }}">
+                    <img class="CoachTech_White" src="{{ asset('svg/logo.svg') }}" alt="SVG Image">
+                </a>
+
+                @auth
+                    <!-- 検索フォーム -->
+                    <form class="form-inline mx-auto" action="{{ route('item.list') }}" method="GET"
+                        style="width: 300px;">
+                        <input class="form-control w-100" type="search" placeholder="なにをお探しですか？" name="search"
+                            value="{{ request('search') }}">
+                    </form>
+
+                    <!-- ナビゲーションリンク -->
+                    <div class="ml-auto">
+                        <ul class="navbar-nav">
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('logout') }}">ログアウト</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('mypage') }}">マイページ</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="btn btn-outline-light" href="{{ route('sell') }}">出品</a>
+                            </li>
+                        </ul>
+                    </div>
+                @endauth
+            </div>
+        </nav>
     </header>
 
     <main>

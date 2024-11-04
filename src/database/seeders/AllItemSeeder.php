@@ -62,7 +62,7 @@ class AllItemSeeder extends Seeder
                 'description' => '高速で信頼性の高いハードディスク',
                 'item_status_id' => 2,
                 'item_image' => 'item_image/HDD+Hard+Disk.jpg',
-                'categories' => ['レディース','メンズ','コスメ']
+                'categories' => ['レディース', 'メンズ', 'コスメ']
             ],
             [
                 'seller_id' => 3,
@@ -81,7 +81,7 @@ class AllItemSeeder extends Seeder
                 'price' => 4000,
                 'description' => 'クラシックなデザインの革靴',
                 'item_status_id' => 4,
-                'item_image' => 'item_image/Leather+Shoes+item+Photo.jpg',
+                'item_image' => 'item_image/Leather+Shoes+Product+Photo.jpg',
                 'categories' => ['スポーツ', 'ハンドメイド']
             ],
             [

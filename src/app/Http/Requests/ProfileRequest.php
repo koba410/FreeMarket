@@ -24,6 +24,9 @@ class ProfileRequest extends FormRequest
     public function rules()
     {
         return [
+            'postal_code' => ['nullable'],
+            'address' => ['nullable'],
+            'building' => ['nullable'],
             'profile_image' => ['mimes:png,jpeg'],
         ];
     }
@@ -36,7 +39,7 @@ class ProfileRequest extends FormRequest
     public function messages()
     {
         return [
-            'img.mimes' => '「.png」または「.jpeg」形式でアップロードしてください',
+            'profile_image.mimes' => '「.png」または「.jpeg」形式でアップロードしてください',
         ];
     }
 }

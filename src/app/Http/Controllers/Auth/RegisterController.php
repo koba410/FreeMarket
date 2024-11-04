@@ -18,11 +18,14 @@ class RegisterController extends Controller
      * @return \Illuminate\Http\RedirectResponse
      */
 
+    // ユーザー登録画面の表示
     public function showRegistrationForm()
     {
         return view('auth.register');
     }
 
+
+    // ユーザー登録機能
     public function register(RegisterRequest $request)
     {
         // バリデーションは RegisterRequest によって自動的に行われます
