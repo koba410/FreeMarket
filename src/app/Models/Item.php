@@ -14,6 +14,7 @@ class Item extends Model
         'price',
         'item_image',
         'description',
+        'is_sold',
     ];
 
     // 出品者（ユーザー）とのリレーション

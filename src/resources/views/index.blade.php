@@ -20,9 +20,12 @@
                         <!-- 商品画像 -->
                         <div class="card-img-top" style="background-color: #e0e0e0; height: 200px; text-align: center;">
                             @if ($item->is_sold)
-                                <span class="badge badge-danger"
-                                    style="position: absolute; top: 10px; left: 10px;">Sold</span>
+                                <div
+                                    style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.6); display: flex; align-items: center; justify-content: center; color: white; font-size: 24px; font-weight: bold;">
+                                    Sold
+                                </div>
                             @endif
+
                             <img src="{{ Storage::url($item->item_image ?? 'img/default.png') }}" alt="商品画像"
                                 style="height: 100%; max-width: 100%; object-fit: cover;">
                         </div>
