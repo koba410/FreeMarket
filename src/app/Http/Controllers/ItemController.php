@@ -21,7 +21,11 @@ class ItemController extends Controller
         if ($request->input('tab') === 'mylist') {
             // マイリスト表示：認証ユーザーでいいねした商品を取得
             if (auth()->check()) {
-                $items = auth()->user()->likes()->get();
+                $items = auth()->user()->likedItems()->where(function ($query) use ($search) {
+                    if ($search) {
+                        $query->where('title', 'like', "%{$search}%");
+                    }
+                })->get();
             } else {
                 $items = collect(); // 未認証の場合は空のコレクションを返す
             }
@@ -33,5 +37,16 @@ class ItemController extends Controller
         }
 
         return view('index', compact('items'));
+    }
+
+    public function show($item_id)
+    {
+        // 指定されたIDの商品を取得し、いいねとコメントのカウントも取得
+        $item = Item::with(['categories', 'status', 'comments.user'])
+            ->withCount(['likedByUsers', 'comments'])
+            ->findOrFail($item_id);
+
+        // 商品詳細ページを表示
+        return view('detail', compact('item'));
     }
 }

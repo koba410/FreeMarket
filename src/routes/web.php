@@ -5,6 +5,7 @@ use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ItemController;
+use App\Http\Controllers\ItemLikeController;
 use App\Http\Controllers\Auth\VerificationController;
 
 /*
@@ -41,5 +42,9 @@ Route::get('/mypage/profile', [UserController::class, 'edit'])->name('profile.ed
 Route::put('/mypage/profile', [UserController::class, 'update'])->name('profile.update');
 
 Route::get('/', [ItemController::class, 'index'])->name('item.list');
+Route::get('/item/{item_id}', [ItemController::class, 'show'])->name('item.show');
 Route::get('/sell', [ItemController::class, 'create'])->name('sell');
 Route::post('/sell', [ItemController::class, 'store'])->name('item.store');
+
+Route::post('/item/{item}/like', [ItemLikeController::class, 'store'])->name('item.like');
+Route::delete('/item/{item}/like', [ItemLikeController::class, 'destroy'])->name('item.unlike');
