@@ -13,6 +13,9 @@
         <div class="alert alert-warning text-center mt-4 wid-auto" role="alert">
             <strong>注意:</strong> メールアドレス認証を行わないとログインできません。
         </div>
-        <a class="btn btn-primary mt-3" href="{{ route('item.list') }}">ログインせずに商品を閲覧する場合はこちら</a>
+        <form action="{{ route('guest.view') }}" method="POST" class="mt-3">
+            @csrf
+            <button type="submit" class="btn btn-primary">ログインせずに商品を閲覧する場合はこちら</button>
+        </form>
     </div>
 @endsection

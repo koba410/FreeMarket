@@ -14,10 +14,7 @@ class VerificationController extends Controller
     {
         // メールアドレスの認証を完了する
         $request->fulfill();
-        // ユーザーを自動でログインさせる
-        $user = User::find($request->user()->id);
-        Auth::login($user);
-        
+
         return redirect()->route('profile.edit'); // 認証後のリダイレクト先
     }
 
@@ -33,5 +30,11 @@ class VerificationController extends Controller
         auth()->user()->sendEmailVerificationNotification();
 
         return back()->with('status', '認証メールを再送しました！');
+    }
+
+    public function guestView()
+    {
+        Auth::logout();
+        return redirect()->route('item.list');
     }
 }

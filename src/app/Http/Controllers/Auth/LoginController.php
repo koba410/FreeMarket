@@ -32,6 +32,11 @@ class LoginController extends Controller
             // ユーザーが初回ログインかどうかを確認
             $user = Auth::user();
 
+            if (!$user->hasVerifiedEmail()) {
+                Auth::logout();
+                return back()->with('status', 'メール認証が必要です。');
+            }
+
             if (!Profile::where('user_id', $user->id)->exists()) {
                 // プロフィール編集画面にリダイレクト
                 return redirect()->route('profile.edit')->with('status', 'プロフィールを登録してください。');
