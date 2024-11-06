@@ -4,10 +4,13 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Item;
+use App\Models\Category;
+use App\Models\Status;
 use App\Models\User;
 
 class ItemController extends Controller
 {
+    // 商品一覧ページを表示
     public function index(Request $request)
     {
         $query = Item::query();
@@ -39,6 +42,7 @@ class ItemController extends Controller
         return view('index', compact('items'));
     }
 
+    // 商品詳細ページを表示
     public function show($item_id)
     {
         // 指定されたIDの商品を取得し、いいねとコメントのカウントも取得
@@ -46,7 +50,19 @@ class ItemController extends Controller
             ->withCount(['likedByUsers', 'comments'])
             ->findOrFail($item_id);
 
-        // 商品詳細ページを表示
         return view('detail', compact('item'));
+    }
+
+    // 商品出品ページを表示
+    public function create(){
+        $categories=Category::all();
+        $statuses=Status::all();
+
+        return view('listing', compact('categories', 'statuses'));
+    }
+
+    // 商品を追加
+    public function store(){
+
     }
 }
