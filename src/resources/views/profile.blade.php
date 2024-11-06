@@ -2,18 +2,30 @@
 
 @section('content')
     <div class="container" style="max-width: 1200px">
+        <!-- ユーザー情報 -->
+        <div class="d-flex justify-content-evenly align-items-center mt-5">
+            <!-- プロフィール画像 -->
+            <div class="d-flex justify-content-around align-items-center" style="min-width: 200px">
+                <img src="{{ Storage::url($user->profile->profile_image ?? 'profile_image/default.jpg') }}"
+                    class="rounded-circle" width="80" height="80" alt="プロフィール画像">
+                <!-- ユーザー名 -->
+                <h3 class="m-0">{{ $user->name }}</h3>
+            </div>
+            <!-- プロフィールを編集ボタン -->
+            <a href="{{ route('profile.edit') }}" class="btn btn-outline-danger">プロフィールを編集</a>
+        </div>
 
         <!-- タブ切り替え -->
-        <div class="text-center mt-4">
-            <a href="{{ route('item.list') }}"
-                class="{{ request('tab') !== 'mylist' ? 'font-weight-bold text-danger' : '' }}">おすすめ</a>
+        <div class="text-left mt-5">
+            <a href="{{ route('mypage', ['tab' => 'sell']) }}"
+                class="{{ request('tab') !== 'buy' ? 'font-weight-bold text-danger' : '' }}">出品した商品</a>
             |
-            <a href="{{ route('item.list', ['tab' => 'mylist']) }}"
-                class="{{ request('tab') === 'mylist' ? 'font-weight-bold text-danger' : '' }}">マイリスト</a>
+            <a href="{{ route('mypage', ['tab' => 'buy']) }}"
+                class="{{ request('tab') === 'buy' ? 'font-weight-bold text-danger' : '' }}">購入した商品</a>
         </div>
 
         <!-- 商品一覧 -->
-        <div class="row mt-4">
+        <div class="row mt-4 pt-3 full-width-line">
             @forelse($items as $item)
                 <div class="col-md-4 mb-4">
                     <div class="card">
@@ -37,4 +49,18 @@
             @endforelse
         </div>
     </div>
+
+    <style>
+        .full-width-line {
+            border-top: 3px solid black;
+            /* 線の色を設定 */
+            margin: 0;
+            /* 上下の余白を消す */
+            width: 100vw;
+            /* 画面の幅全体をカバー */
+            position: relative;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+    </style>
 @endsection

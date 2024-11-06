@@ -8,22 +8,25 @@
             @csrf
             @method('PUT')
 
-            <div class="d-flex justify-content-center mt-4">
+            <div class="d-flex justify-content-center mt-5 mb-5">
                 <div>
                     <img id="profileImagePreview"
                         src="{{ Storage::url($profile->profile_image ?? 'profile_image/default.jpg') }}"
                         class="rounded-circle" width="100" height="100" alt="プロフィール画像">
                     <!-- 画像選択ボタン -->
-                    <input type="file" id="profileImage" name="profile_image" class="d-none" accept="image/*"
+                    <input type="file" id="profileImage" name="profile_image"
+                        class="d-none @error('profile_image') is-invalid @enderror" accept="image/*"
                         onchange="previewImage(event)">
                     <button type="button" class="btn btn-outline-danger"
-                        onclick="document.getElementById('profileImage').click()">画像を選択する</button>
+                        onclick="document.getElementById('profileImage').click()" style="margin-left: 5rem">画像を選択する</button>
+
+                    <!-- エラーメッセージ -->
+                    @error('profile_image')
+                        <span class="invalid-feedback d-block mt-3" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror
                 </div>
-                @error('profile_image')
-                    <span class="invalid-feedback" role="alert">
-                        <strong>{{ $message }}</strong>
-                    </span>
-                @enderror
             </div>
 
 

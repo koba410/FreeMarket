@@ -78,8 +78,9 @@ class UserController extends Controller
             $profileImage = $request->file('profile_image');
             $imagePath = $profileImage->storeAs('profile_image', "profile_{$user_id}." . $profileImage->getClientOriginalExtension(), 'public');
         } else {
-            // 画像が設定されていない場合はデフォルト画像
-            $imagePath = 'profile_image/default.jpg';
+            // プロフィールが既に存在している場合は、その画像パスを使用
+            $existingProfile = Profile::where('user_id', $user_id)->first();
+            $imagePath = $existingProfile ? $existingProfile->profile_image : 'profile_image/default.jpg';
         }
 
         // user_profiles テーブルのプロフィール情報をアップサート

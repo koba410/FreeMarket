@@ -13,7 +13,7 @@
         </div>
 
         <!-- 商品一覧 -->
-        <div class="row mt-4">
+        <div class="row mt-4 pt-3 full-width-line">
             @forelse($items as $item)
                 <div class="col-md-4 mb-4">
                     <a href="{{ route('item.show', $item->id) }}" style="text-decoration: none; color: inherit;">
@@ -42,4 +42,17 @@
             @endforelse
         </div>
     </div>
+    <style>
+        .full-width-line {
+            border-top: 3px solid black;
+            /* 線の色を設定 */
+            margin: 0;
+            /* 上下の余白を消す */
+            width: 100vw;
+            /* 画面の幅全体をカバー */
+            position: relative;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+    </style>
 @endsection
