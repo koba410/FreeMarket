@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ExhibitionRequest;
 use Illuminate\Http\Request;
 use App\Models\Item;
 use App\Models\Category;
 use App\Models\Status;
+use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 
 class ItemController extends Controller
@@ -54,15 +56,54 @@ class ItemController extends Controller
     }
 
     // 商品出品ページを表示
-    public function create(){
-        $categories=Category::all();
-        $statuses=Status::all();
+    public function create()
+    {
+        $categories = Category::all();
+        $statuses = Status::all();
 
         return view('listing', compact('categories', 'statuses'));
     }
 
     // 商品を追加
-    public function store(){
+    public function store(ExhibitionRequest $request)
+    {
+        $user = Auth::user();
+        $user_id = $user->id;
 
+        $item = new Item();
+        $item->seller_id = $user_id;
+        // 画像の選択がなかった場合デフォルト画像とする。（バリデーションで選択必須にしているためおそらくその可能性は低い）
+        $item->item_image = 'item_image/default.jpg';
+        $item->title = $request->input('title');
+        $item->brand = $request->input('brand');
+        $item->description = $request->input('description');
+        $item->item_status_id = $request->input('status');
+        $item->price = $request->input('price');
+        // 他のフィールドも同様に設定
+        $item->save(); // ここで新しいIDが割り当てられる
+
+        // カテゴリとの関連付けを保存
+        $item->categories()->sync($request->categories);
+
+        // 保存した商品のIDを取得
+        $item_Id = $item->id;
+
+        // 画像の保存
+        if ($request->hasFile('item_image')) {
+            $itemImage = $request->file('item_image');
+
+            // ファイル名に商品のIDを使用して画像を保存
+            $imagePath = $itemImage->storeAs(
+                'item_image', // 保存するディレクトリ
+                "item_{$item_Id}." . $itemImage->getClientOriginalExtension(), // ファイル名
+                'public' // ディスク（publicディレクトリ）
+            );
+
+            // 画像のパスをアイテムデータに保存
+            $item->item_image = $imagePath;
+            $item->save(); // 商品データを再度保存して、画像パスを更新
+        }
+
+        return redirect()->route('item.show', $item_Id)->with('status', '商品が追加されました！');
     }
 }
