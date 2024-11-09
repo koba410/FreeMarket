@@ -50,17 +50,4 @@
         </div>
     </div>
 
-    <style>
-        .full-width-line {
-            border-top: 3px solid black;
-            /* 線の色を設定 */
-            margin: 0;
-            /* 上下の余白を消す */
-            width: 100vw;
-            /* 画面の幅全体をカバー */
-            position: relative;
-            left: 50%;
-            transform: translateX(-50%);
-        }
-    </style>
 @endsection

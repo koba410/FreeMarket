@@ -123,40 +123,4 @@
         </div>
     </div>
 
-
-    <style>
-        .like-section,
-        .comment-section {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            font-size: 1.2em;
-            color: #6c757d;
-            /* アイコンと数字の色を薄めに */
-        }
-
-        .btn-danger {
-            background-color: #ff6b6b;
-            border: none;
-            font-weight: bold;
-            padding: 0.75em 0;
-        }
-
-        .btn-danger:hover {
-            background-color: #ff4a4a;
-        }
-
-        .comment-bubble {
-            background-color: #f0f0f0;
-            border-radius: 10px;
-            padding: 10px;
-            margin-top: 5px;
-            width: 90%;
-            word-wrap: break-word;
-        }
-
-        .media-body {
-            width: 90%;
-        }
-    </style>
 @endsection

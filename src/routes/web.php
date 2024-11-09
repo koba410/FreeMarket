@@ -39,17 +39,17 @@ Route::get('login', [LoginController::class, 'showLoginForm'])->name('login');
 Route::post('login', [LoginController::class, 'login']);
 Route::get('logout', [LoginController::class, 'destroy'])->name('logout');
 
-Route::get('/mypage', [UserController::class, 'show'])->name('mypage')->middleware('auth');
-Route::get('/mypage/profile', [UserController::class, 'edit'])->name('profile.edit')->middleware('auth');
-Route::put('/mypage/profile', [UserController::class, 'update'])->name('profile.update');
+Route::get('/mypage', [UserController::class, 'show'])->middleware('auth')->name('mypage');
+Route::get('/mypage/profile', [UserController::class, 'edit'])->middleware('auth')->name('profile.edit');
+Route::put('/mypage/profile', [UserController::class, 'update'])->middleware('auth')->name('profile.update');
 
 Route::get('/', [ItemController::class, 'index'])->name('item.list');
 Route::get('/item/{item_id}', [ItemController::class, 'show'])->name('item.show');
-Route::get('/sell', [ItemController::class, 'create'])->name('sell')->middleware('auth');
-Route::post('/sell', [ItemController::class, 'store'])->name('item.store')->middleware('auth');
+Route::get('/sell', [ItemController::class, 'create'])->middleware('auth')->name('sell');
+Route::post('/sell', [ItemController::class, 'store'])->middleware('auth')->name('item.store');
 
 Route::post('/item/{item}/like', [ItemLikeController::class, 'store'])->name('item.like');
 Route::delete('/item/{item}/like', [ItemLikeController::class, 'destroy'])->name('item.unlike');
 
-Route::post('/item/{item}/comment', [CommentController::class, 'store'])->name('comment.store')->middleware('auth');
-Route::delete('/comment/{comment}', [CommentController::class, 'destroy'])->name('comment.destroy')->middleware('auth');
+Route::post('/item/{item}/comment', [CommentController::class, 'store'])->middleware('auth')->name('comment.store');
+Route::delete('/comment/{comment}', [CommentController::class, 'destroy'])->middleware('auth')->name('comment.destroy');
