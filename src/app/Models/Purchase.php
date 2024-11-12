@@ -10,9 +10,16 @@ class Purchase extends Model
     use HasFactory;
 
     protected $fillable = [
-        "total_price",
-        "payment_status",
-        "purchase_date",
+        "item_id",
+        "buyer_id",
+        "delivary_postal_code",
+        "delivary_address",
+        "delivary_building",
         "payment_method",
     ];
+
+    public function item()
+    {
+        return $this->belongsTo(Item::class, 'item_id');
+    }
 }

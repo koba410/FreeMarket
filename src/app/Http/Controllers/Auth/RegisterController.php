@@ -11,13 +11,6 @@ use Illuminate\Auth\Events\Registered;
 
 class RegisterController extends Controller
 {
-    /**
-     * ユーザー登録処理
-     *
-     * @param  \App\Http\Requests\RegisterRequest  $request
-     * @return \Illuminate\Http\RedirectResponse
-     */
-
     // ユーザー登録画面の表示
     public function showRegistrationForm()
     {
@@ -28,8 +21,6 @@ class RegisterController extends Controller
     // ユーザー登録機能
     public function register(RegisterRequest $request)
     {
-        // バリデーションは RegisterRequest によって自動的に行われます
-
         // ユーザー作成
         $user = User::create([
             'name' => $request->name,

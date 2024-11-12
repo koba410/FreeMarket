@@ -22,7 +22,6 @@ class LoginController extends Controller
     // ログイン機能
     public function login(LoginRequest $request)
     {
-        // バリデーションは LoginRequest によって自動的に実行される
 
         // 認証処理
         if (Auth::attempt($request->only('email', 'password'))) {
@@ -58,7 +57,7 @@ class LoginController extends Controller
         $request->session()->invalidate();
         $request->session()->regenerateToken();
 
-        return redirect('/login');
         // ログアウト後に/loginにリダイレクト
+        return redirect('/login');
     }
 }

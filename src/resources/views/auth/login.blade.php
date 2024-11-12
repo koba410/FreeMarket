@@ -20,7 +20,7 @@
                         @enderror
                     </div>
 
-                    <!-- メールアドレス -->
+                    <!-- パスワード -->
                     <div class="form-group mb-5">
                         <label for="password">パスワード</label>
                         <input type="password" class="form-control @error('password') is-invalid @enderror" id="password"

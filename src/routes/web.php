@@ -8,6 +8,8 @@ use App\Http\Controllers\ItemController;
 use App\Http\Controllers\ItemLikeController;
 use App\Http\Controllers\Auth\VerificationController;
 use App\Http\Controllers\CommentController;
+use App\Http\Controllers\PurchaseController;
+use App\Http\Controllers\AddressController;
 
 /*
 |--------------------------------------------------------------------------
@@ -53,3 +55,13 @@ Route::delete('/item/{item}/like', [ItemLikeController::class, 'destroy'])->name
 
 Route::post('/item/{item}/comment', [CommentController::class, 'store'])->middleware('auth')->name('comment.store');
 Route::delete('/comment/{comment}', [CommentController::class, 'destroy'])->middleware('auth')->name('comment.destroy');
+
+Route::get('/purchase/{item_id}', [PurchaseController::class, 'showPurchaseForm'])->middleware('auth')->name('purchase.form');
+Route::post('/purchase/{item_id}/card', [PurchaseController::class, 'cardCheckout'])->middleware('auth')->name('stripe.cardCheckout');
+Route::post('/purchase/{item_id}/convenience', [PurchaseController::class, 'convenienceCheckout'])->middleware('auth')->name('stripe.convenienceCheckout');
+Route::get('/purchase/{item_id}/{method}/success', [PurchaseController::class, 'success'])->middleware('auth')->name('purchase.success');
+Route::get('/purchase/{item_id}/cancel', [PurchaseController::class, 'cancel'])->middleware('auth')->name('purchase.cancel');
+Route::post('/webhook/stripe', [PurchaseController::class, 'handleWebhook']);
+
+Route::get('/purchase/address/{item_id}', [AddressController::class, 'edit'])->middleware('auth')->name('address.edit');
+Route::patch('/purchase/address', [AddressController::class, 'update'])->middleware('auth')->name('address.update');

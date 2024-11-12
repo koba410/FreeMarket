@@ -51,7 +51,7 @@
                     </div>
                 </div>
                 <div class="d-flex justify-content-center">
-                    <a href="{{-- route('purchase', $item->id) --}}" class="btn btn-danger w-100">購入手続きへ</a>
+                    <a href="{{ route('purchase.form', $item->id) }}" class="btn btn-danger w-100">購入手続きへ</a>
                 </div>
 
                 <!-- 商品説明 -->
@@ -122,5 +122,4 @@
             </div>
         </div>
     </div>
-
 @endsection
