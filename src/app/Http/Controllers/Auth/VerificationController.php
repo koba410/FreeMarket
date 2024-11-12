@@ -32,6 +32,7 @@ class VerificationController extends Controller
         return back()->with('status', '認証メールを再送しました！');
     }
 
+    // メール認証せずに一覧画面に遷移する場合
     public function guestView()
     {
         Auth::logout();

@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Auth;
 
 class ItemLikeController extends Controller
 {
-    // いいねを追加する
+    // いいねする
     public function store(Item $item)
     {
         $user = Auth::user();

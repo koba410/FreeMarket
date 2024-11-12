@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Auth;
 class UserController extends Controller
 {
 
+    // プロフィール画面の表示
     public function show(Request $request)
     {
         // ログインしているユーザーの取得
@@ -21,29 +22,22 @@ class UserController extends Controller
         // プロフィール情報の取得
         $profile = $user->profile; // リレーションで取得
 
-        // アイテム情報を取得
-        $query = Item::query();
-
-        // 購入情報を取得
-        $buy_items = Purchase::query();
-
-        // デフォルトの $items 値を設定
+        // アイテム情報のデフォルト設定
         $items = collect();
 
-
-        // 出品した商品か購入した商品か
-        if ($request->input('tab') === 'sold') {
-            // 出品した商品なら
-            $items = $query->where('seller_id', '=', auth()->id())->get();
-        }
-        if ($request->input('tab') === 'bought') {
-            // 購入した商品なら
-            $items = $buy_items->where('buyer_id', '=', auth()->id())->get();
+        // 出品した商品か購入した商品かで表示を切り替える
+        if ($request->input('tab') === 'sell') {
+            // 出品した商品を取得（売れているかは別でチェックしたい場合）
+            $items = Item::where('seller_id', $user->id)->get();
+        } elseif ($request->input('tab') === 'buy') {
+            // 購入した商品を取得
+            $items = Purchase::where('buyer_id', $user->id)->with('item')->get()->pluck('item');
         }
 
-        // プロフィール編集画面を表示
+        // プロフィール画面を表示
         return view('profile', compact('user', 'profile', 'items'));
     }
+
 
     // プロフィール編集画面の表示
     public function edit()
