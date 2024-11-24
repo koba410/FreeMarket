@@ -21,21 +21,21 @@
 ### システム要件一覧
 - 機能要件一覧：https://docs.google.com/spreadsheets/d/1FSrCdliGR0IVwIg0-nmgG-LBOOt4oGlBOyrF4CIY2O0/edit?gid=1909938334#gid=1909938334
 - 非機能要件一覧：運用・保守について	クライアントが運用・保守を行う
--- リリースについて：4ヶ月後を予定
--- セキュリティについて：アプリケーション内に限り考慮する
--- SEOについて：考慮しない
--- コード品質について：コーディング規約（https://estra-inc.notion.site/1263a94a2aab4e3ab81bad77db1cf186?pvs=4）
----  その他の要件については、開発プロセスを参照（https://docs.google.com/spreadsheets/d/1FSrCdliGR0IVwIg0-nmgG-LBOOt4oGlBOyrF4CIY2O0/edit?gid=950806051#gid=950806051&range=C10）
+- リリースについて：4ヶ月後を予定
+- セキュリティについて：アプリケーション内に限り考慮する
+- SEOについて：考慮しない
+- コード品質について：コーディング規約（https://estra-inc.notion.site/1263a94a2aab4e3ab81bad77db1cf186?pvs=4）
+-  その他の要件については、開発プロセスを参照（https://docs.google.com/spreadsheets/d/1FSrCdliGR0IVwIg0-nmgG-LBOOt4oGlBOyrF4CIY2O0/edit?gid=950806051#gid=950806051&range=C10）
 - インフラ要件：本番環境・開発環境について	開発環境（ローカル環境）は開発者が用意
--- サーバーについて：サーバーは設置しない
--- ドメインについて：ドメインは取得しない
--- SSL化について：SSL化は考慮しない
--- データベースについて：MySQL
+- サーバーについて：サーバーは設置しない
+- ドメインについて：ドメインは取得しない
+- SSL化について：SSL化は考慮しない
+- データベースについて：MySQL
 - デザイン要件	UIデザインについて：https://docs.google.com/spreadsheets/d/1FSrCdliGR0IVwIg0-nmgG-LBOOt4oGlBOyrF4CIY2O0/edit?gid=1998718085#gid=1998718085
 - テスト計画	テスト項目について：https://docs.google.com/spreadsheets/d/1FSrCdliGR0IVwIg0-nmgG-LBOOt4oGlBOyrF4CIY2O0/edit?gid=950806051#gid=950806051
 - 開発手法	開発言語について：PHP
--- フレームワークについて：Laravel
--- バージョン管理について：Docker, GitHub
+- フレームワークについて：Laravel
+- バージョン管理について：Docker, GitHub
 
 ## 環境構築
 
