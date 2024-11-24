@@ -24,8 +24,9 @@ class ProfileRequest extends FormRequest
     public function rules()
     {
         return [
-            'postal_code' => ['nullable'],
-            'address' => ['nullable'],
+            'name'=>['required'],
+            'postal_code' => ['required', 'regex:/^\d{3}-\d{4}$/'],
+            'address' => ['required'],
             'building' => ['nullable'],
             'profile_image' => ['mimes:png,jpeg'],
         ];
@@ -39,6 +40,10 @@ class ProfileRequest extends FormRequest
     public function messages()
     {
         return [
+            'name.required'=>"ユーザーネームを入力してください",
+            'postal_code.required' => "郵便番号を入力してください",
+            'postal_code.regex' => '郵便番号をハイフン付きで入力してください',
+            'address.required' => '住所を入力してください',
             'profile_image.mimes' => '「.png」または「.jpeg」形式でアップロードしてください',
         ];
     }

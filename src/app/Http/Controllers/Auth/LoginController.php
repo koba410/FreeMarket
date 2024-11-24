@@ -28,7 +28,6 @@ class LoginController extends Controller
             // 認証成功
 
             /** @var User $user */
-            // ユーザーが初回ログインかどうかを確認
             $user = Auth::user();
 
             if (!$user->hasVerifiedEmail()) {

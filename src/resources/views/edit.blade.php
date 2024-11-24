@@ -33,22 +33,37 @@
             <!-- ユーザー名 -->
             <div class="form-group mt-3">
                 <label for="name">ユーザー名</label>
-                <input type="text" class="form-control" id="name" name="name"
+                <input type="text" class="form-control @error('name') is-invalid @enderror" id="name" name="name"
                     value="{{ old('name', $user->name) }}">
+                @error('name')
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                @enderror
             </div>
 
             <!-- 郵便番号 -->
             <div class="form-group mt-3">
                 <label for="postal_code">郵便番号</label>
-                <input type="text" class="form-control" id="postal_code" name="postal_code"
-                    value="{{ old('postal_code', $profile->postal_code ?? '') }}">
+                <input type="text" class="form-control @error('postal_code') is-invalid @enderror" id="postal_code"
+                    name="postal_code" value="{{ old('postal_code', $profile->postal_code ?? '') }}">
+                @error('postal_code')
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                @enderror
             </div>
 
             <!-- 住所 -->
             <div class="form-group mt-3">
                 <label for="address">住所</label>
-                <input type="text" class="form-control" id="address" name="address"
-                    value="{{ old('address', $profile->address ?? '') }}">
+                <input type="text" class="form-control @error('address') is-invalid @enderror" id="address"
+                    name="address" value="{{ old('address', $profile->address ?? '') }}">
+                @error('address')
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                @enderror
             </div>
 
             <!-- 建物名 -->
