@@ -73,6 +73,12 @@
 - fortity 1.19.1
 - stripe CLI 1.21.11
 
+## 管理者ユーザーおよび一般ユーザーのログイン情報
+laravel環境構築が終えたら、localhost/register を検索し、ユーザー登録をしてメール認証を行うとログインできる。
+もしくは、ログイン画面(localhost/login)にて下記情報を入力すれば認証済みアカウントでログインできる。
+メールアドレス：example@example.com
+パスワード：password
+
 ## URL
 - 開発環境 : [http://localhost](http://localhost/)
 - phpMyAdmin : [http://localhost:8080/](http://localhost:8080/)
