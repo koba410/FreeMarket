@@ -78,8 +78,9 @@
 - stripe CLI 1.21.11
 
 ## 管理者ユーザーおよび一般ユーザーのログイン情報
-laravel環境構築が終えたら、localhost/register を検索し、ユーザー登録をしてメール認証を行うとログインできる。
-もしくは、ログイン画面(localhost/login)にて下記情報を入力すれば認証済みアカウントでログインできる。
+laravel環境構築が終えたら、localhost/register を検索し、ユーザー登録をしてメール認証を行うとログインできる。  
+もしくは、ログイン画面(localhost/login)にて下記情報を入力すれば認証済みアカウントでログインできる。  
+この方法でログインする際はプロフィール画面でプロフィール編集してから購入画面へ遷移すること。
 - メールアドレス：example@example.com
 - パスワード：password
 
@@ -87,3 +88,6 @@ laravel環境構築が終えたら、localhost/register を検索し、ユーザ
 - 開発環境 : [http://localhost](http://localhost/)
 - phpMyAdmin : [http://localhost:8080/](http://localhost:8080/)
 - mailhog : [http://localhost:8025](http://localhost:8025/)
+
+## ER図
+![ER図](images/フリマアプリ.png)
