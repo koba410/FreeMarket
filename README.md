@@ -55,6 +55,8 @@
 6. `php artisan migrate:refresh`
 7. `php artisan db:seed`
 8. PCがwindowsの場合はこのコマンドを打つこと`sudo chmod -R 777 src/*`
+9. `.env`ファイルにstripe apiキーを記載する(STRIPE_SECRET=シークレットキー、STRIPE_PUBLISHABLE=公開キー）
+10. `.env`ファイルの`MAIL_FROM_ADDRESS=null`を`MAIL_FROM_ADDRESS="example@example.com"`とする
 
 ### 購入完了方法
 クレジットカード支払いの場合
