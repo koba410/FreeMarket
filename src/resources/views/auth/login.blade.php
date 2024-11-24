@@ -44,7 +44,7 @@
 
                     <!-- 会員登録リンク -->
                     <div class="text-center">
-                        <a href="{{ route('register') }}" class="text-primary">会員登録はこちら</a>
+                        <a href="{{ route('register.view') }}" class="text-primary">会員登録はこちら</a>
                     </div>
                 </form>
             </div>

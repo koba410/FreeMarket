@@ -32,7 +32,8 @@
 
                 <!-- 配送先情報 -->
                 <h5>配送先</h5>
-                <p>{{ $profile->postal_code }} <br> {{ $profile->address }} <br>{{ $profile->building }}</p>
+                <p>{{ $profile->postal_code ?? '' }} <br> {{ $profile->address ?? '' }} <br>{{ $profile->building ?? '' }}
+                </p>
                 <a href="{{ route('address.edit', $item->id) }}" class="text-primary">変更する</a>
 
                 <hr class="my-4">
@@ -72,8 +73,8 @@
             const paymentMethod = document.getElementById('paymentMethod').value;
 
             // 配送先の郵便番号と住所が空欄かどうかをチェック
-            const postalCode = "{{ $profile->postal_code }}";
-            const address = "{{ $profile->address }}";
+            const postalCode = "{{ $profile->postal_code ?? '' }}";
+            const address = "{{ $profile->address ?? '' }}";
 
             if (!paymentMethod) {
                 alert('支払い方法を選択してください');

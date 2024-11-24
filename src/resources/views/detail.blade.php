@@ -7,7 +7,7 @@
             <div class="col-md-6">
                 <div class="card">
                     <div class="card-body d-flex justify-content-center align-items-center">
-                        <img src="{{ Storage::url($item->item_image ?? 'img/default.png') }}" alt="商品画像"
+                        <img src="{{ Storage::url($item->item_image ?? 'item_image/default.png') }}" alt="商品画像"
                             style="height: 100%; max-width: 100%; object-fit: cover;">
                     </div>
                 </div>
@@ -44,10 +44,10 @@
                             </form>
                         @endif
                         <!-- いいね数の表示 -->
-                        <p>{{ $item->liked_by_users_count }}</p>
+                        <p class="like-count">{{ $item->liked_by_users_count }}</p>
                     </div>
                     <div class="comment-section">
-                        <i class="bi bi-chat"></i> <span>{{ $item->comments_count ?? 0 }}</span>
+                        <i class="bi bi-chat"></i> <span class="comment-count">{{ $item->comments_count ?? 0 }}</span>
                     </div>
                 </div>
                 <div class="d-flex justify-content-center">
@@ -78,7 +78,7 @@
                     @foreach ($item->comments as $comment)
                         <div class="media mt-3">
                             <div class="d-flex align-items-start align-items-center">
-                                <img src="{{ Storage::url($comment->user->profile->profile_image ?? 'img/default.png') }}"
+                                <img src="{{ Storage::url($comment->user->profile->profile_image ?? 'profile_image/default.jpg') }}"
                                     class="mr-3 rounded-circle" width="40" height="40" alt="ユーザーアイコン">
                                 <h6 class="mt-0" style="margin-left: 1rem;">{{ $comment->user->name }}</h6>
                             </div>

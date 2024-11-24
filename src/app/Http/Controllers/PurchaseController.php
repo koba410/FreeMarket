@@ -21,7 +21,7 @@ class PurchaseController extends Controller
         // ログインしているユーザーの取得
         $user = Auth::user();
         // プロフィール情報の取得
-        $profile = $user->profile; // リレーションで取得
+        $profile = $user->profile->fresh(); // リレーションで取得
 
         // 購入画面のビューを表示
         return view('purchase', compact('item', 'profile'));

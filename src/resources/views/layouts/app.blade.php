@@ -33,9 +33,9 @@
                         <span class="navbar-toggler-icon"></span>
                     </button>
 
-                    <div class="collapse navbar-collapse mt-3" id="navbarNav">
+                    <div class="collapse navbar-collapse" id="navbarNav">
                         <!-- モバイル用ナビゲーションリンク -->
-                        <ul class="navbar-nav ms-auto d-lg-none flex-row">
+                        <ul class="navbar-nav ms-auto d-lg-none flex-row mt-3">
                             <!-- 各アイテムに余白を追加 -->
                             <li class="nav-item me-3">
                                 <a class="nav-link" href="#" onclick="toggleDrawer()" style="font-size: 1.5em;">
@@ -46,7 +46,7 @@
                                 <a class="nav-link" href="{{ route('logout') }}">ログアウト</a>
                             </li>
                             <li class="nav-item me-3">
-                                <a class="nav-link" href="{{ route('mypage') }}">マイページ</a>
+                                <a class="nav-link" href="{{ route('mypage', ['tab' => 'sell']) }}">マイページ</a>
                             </li>
                             <li class="nav-item">
                                 <a class="btn btn-outline-light" href="{{ route('sell') }}">出品</a>
@@ -54,12 +54,18 @@
                         </ul>
 
                         <!-- デスクトップ用ナビゲーションリンク -->
+                        <form class="form-inline mx-auto d-none d-lg-flex" action="{{ route('item.list') }}" method="GET"
+                            style="width: 300px;">
+                            <input class="form-control w-100" type="search" placeholder="なにをお探しですか？" name="search"
+                                value="{{ request('search') }}">
+                        </form>
+
                         <ul class="navbar-nav ms-auto d-none d-lg-flex flex-row align-items-center">
                             <li class="nav-item me-3">
                                 <a class="nav-link" href="{{ route('logout') }}">ログアウト</a>
                             </li>
                             <li class="nav-item me-3">
-                                <a class="nav-link" href="{{ route('mypage') }}">マイページ</a>
+                                <a class="nav-link" href="{{ route('mypage', ['tab' => 'sell']) }}">マイページ</a>
                             </li>
                             <li class="nav-item">
                                 <a class="btn btn-outline-light" href="{{ route('sell') }}">出品</a>

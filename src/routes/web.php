@@ -34,8 +34,8 @@ Route::post('/email/verification-notification', [VerificationController::class, 
     ->middleware(['auth', 'throttle:6,1'])->name('verification.send');
 Route::post('/guest-view', [VerificationController::class, 'guestView'])->name('guest.view');
 
-Route::get('register', [RegisterController::class, 'showRegistrationForm'])->name('register');
-Route::post('register', [RegisterController::class, 'register']);
+Route::get('register', [RegisterController::class, 'showRegistrationForm'])->name('register.view');
+Route::post('register', [RegisterController::class, 'register'])->name('register');
 
 Route::get('login', [LoginController::class, 'showLoginForm'])->name('login');
 Route::post('login', [LoginController::class, 'login']);

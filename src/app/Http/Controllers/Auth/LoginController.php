@@ -36,11 +36,6 @@ class LoginController extends Controller
                 return back()->with('status', 'メール認証が必要です。');
             }
 
-            if (!Profile::where('user_id', $user->id)->exists()) {
-                // プロフィール編集画面にリダイレクト
-                return redirect()->route('profile.edit')->with('status', 'プロフィールを登録してください。');
-            }
-
             return redirect()->intended('/');
         }
 

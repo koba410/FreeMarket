@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Profile;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\PurchaseRequest;
 
@@ -31,11 +32,15 @@ class AddressController extends Controller
             return redirect()->back()->withErrors(['profile' => 'プロフィール情報が見つかりませんでした。']);
         }
 
-        $profile->update([
-            'postal_code' => $request->postal_code,
-            'address' => $request->address,
-            'building' => $request->building,
-        ]);
+        Profile::updateOrCreate(
+            ['user_id' => $user->id],  // 検索条件に user_id を指定
+            [
+                'user_id' => $user->id,  // 新規作成時に user_id を明示的に指定
+                'postal_code' => $request->postal_code ?? '',
+                'address' => $request->address ?? '',
+                'building' => $request->building ?? '',
+            ]
+        );
 
         return redirect()->route('purchase.form', ['item_id' => $request->item_id])->with('status', '住所情報が更新されました。');
     }

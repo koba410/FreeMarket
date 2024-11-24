@@ -62,7 +62,7 @@
                     </div>
 
                     <!-- ログインリンク -->
-                    <div class="text-center">
+                    <div class="text-center mb-4">
                         <a href="{{ route('login') }}" class="text-primary">ログインはこちら</a>
                     </div>
                 </form>

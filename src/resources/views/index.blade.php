@@ -27,7 +27,7 @@
                                     </div>
                                 @endif
 
-                                <img src="{{ Storage::url($item->item_image ?? 'img/default.png') }}" alt="商品画像"
+                                <img src="{{ Storage::url($item->item_image ?? 'item_image/default.jpg') }}" alt="商品画像"
                                     style="height: 100%; max-width: 100%; object-fit: cover;">
                             </div>
                             <!-- 商品名 -->

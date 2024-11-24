@@ -18,7 +18,7 @@
         <!-- タブ切り替え -->
         <div class="text-left mt-5">
             <a href="{{ route('mypage', ['tab' => 'sell']) }}"
-                class="{{ request('tab') !== 'buy' ? 'font-weight-bold text-danger' : '' }}">出品した商品</a>
+                class="{{ request('tab') !== 'buy' ? 'font-weight-bold text-danger' : '' }}" >出品した商品</a>
             |
             <a href="{{ route('mypage', ['tab' => 'buy']) }}"
                 class="{{ request('tab') === 'buy' ? 'font-weight-bold text-danger' : '' }}">購入した商品</a>
@@ -39,7 +39,7 @@
                                     </div>
                                 @endif
 
-                                <img src="{{ Storage::url($item->item_image ?? 'img/default.png') }}" alt="商品画像"
+                                <img src="{{ Storage::url($item->item_image ?? 'item_image/default.png') }}" alt="商品画像"
                                     style="height: 100%; max-width: 100%; object-fit: cover;">
                             </div>
                             <!-- 商品名 -->

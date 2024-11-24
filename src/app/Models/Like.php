@@ -11,4 +11,8 @@ class Like extends Model
 
     protected $table = 'item_likes';
 
+    protected $fillable = [
+        'user_id',
+        'item_id',
+    ];
 }
