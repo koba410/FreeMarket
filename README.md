@@ -1,189 +1,85 @@
 # FreeMarket
 
-このアプリケーションは、ユーザーが商品を出品、購入できるフリーマーケットプラットフォームです。主な機能として、商品出品、購入、支払い方法の選択、ユーザープロフィール管理、コメント機能、商品のお気に入り機能などを提供します。
-
-## 特徴
-
-- **商品出品**
-  - カテゴリを複数選択可能。
-  - 商品状態（ステータス）と画像のアップロードが必須。
-  - 出品時に入力した情報（タイトル、説明、価格、カテゴリなど）を保存。
+## プロジェクト概要
+### Webサービス制作の概要・方針決定
+- サービス名：coachtechフリマ
+- サービス概要：ある企業が開発した独自のフリマアプリ
+- 制作の背景と目的：アイテムの出品と購入を行うためのフリマアプリを開発する
+- 制作の目標：初年度でのユーザー数1000人達成
+- 作業範囲	：設計、コーディング、テスト
+- 納品方法：GitHubでのリポジトリ共有
   
-- **購入機能**
-  - 商品購入時に配送先住所と支払い方法を入力。
-  - Stripe を使用したクレジットカード決済とコンビニ支払いをサポート。
+### 業務要件一覧
+- 現行のサービスの分析：新規サービスのため、考慮しない
+- 競合他社の調査・分析：機能や画面が複雑で使いづらい
   
-- **ユーザープロフィール管理**
-  - プロフィール情報（画像、ユーザー名、住所など）の変更。
-  - 出品した商品一覧と購入した商品一覧の確認。
+### サイト要件一覧
+- ターゲットユーザー：10~30代の社会人
+- ターゲットブラウザ・OS：PC：Chrome/Firefox/Safari 最新バージョン
+- ページ一覧：https://docs.google.com/spreadsheets/d/1FSrCdliGR0IVwIg0-nmgG-LBOOt4oGlBOyrF4CIY2O0/edit?gid=1998718085#gid=1998718085
   
-- **その他**
-  - 商品へのコメント機能。
-  - 商品のお気に入り登録。
-  - 検索機能を利用して特定のアイテムを検索可能。
+### システム要件一覧
+- 機能要件一覧：https://docs.google.com/spreadsheets/d/1FSrCdliGR0IVwIg0-nmgG-LBOOt4oGlBOyrF4CIY2O0/edit?gid=1909938334#gid=1909938334
+- 非機能要件一覧：運用・保守について	クライアントが運用・保守を行う
+- リリースについて：4ヶ月後を予定
+- セキュリティについて：アプリケーション内に限り考慮する
+- SEOについて：考慮しない
+- コード品質について：コーディング規約（https://estra-inc.notion.site/1263a94a2aab4e3ab81bad77db1cf186?pvs=4）
+-  その他の要件については、開発プロセスを参照（https://docs.google.com/spreadsheets/d/1FSrCdliGR0IVwIg0-nmgG-LBOOt4oGlBOyrF4CIY2O0/edit?gid=950806051#gid=950806051&range=C10）
+- インフラ要件：本番環境・開発環境について	開発環境（ローカル環境）は開発者が用意
+- サーバーについて：サーバーは設置しない
+- ドメインについて：ドメインは取得しない
+- SSL化について：SSL化は考慮しない
+- データベースについて：MySQL
+- デザイン要件	UIデザインについて：https://docs.google.com/spreadsheets/d/1FSrCdliGR0IVwIg0-nmgG-LBOOt4oGlBOyrF4CIY2O0/edit?gid=1998718085#gid=1998718085
+- テスト計画	テスト項目について：https://docs.google.com/spreadsheets/d/1FSrCdliGR0IVwIg0-nmgG-LBOOt4oGlBOyrF4CIY2O0/edit?gid=950806051#gid=950806051
+- 開発手法	開発言語について：PHP
+- フレームワークについて：Laravel
+- バージョン管理について：Docker, GitHub
 
----
+## 環境構築
 
-## インストール
+### Dockerビルド
+1. `git clone git@github.com:koba410/FreeMarket.git`
+2. `docker-compose up -d --build`
 
-以下の手順に従って、このアプリケーションをローカル環境にセットアップします。
+＊ MySQLは、OSによって起動しない場合があるのでそれぞれのPCに合わせて`docker-compose.yml`ファイルを編集してください。
 
-### 必要条件
+### Laravel環境構築
+1. `docker-compose exec php bash`
+2. `composer install`
+3. `.env.example`ファイルから`.env`を作成し、環境変数を変更
+4. `php artisan key:generate`
+5. `php artisan storage:link`
+6. `php artisan migrate:refresh`
+7. `php artisan db:seed`
 
-- PHP 8.1 以上
-- Composer
-- MySQL 8.0 以上
-- Node.js 16.x 以上
-- Laravel 9.x
-- Stripe アカウント
+### 購入完了方法
+クレジットカード支払いの場合
+　下記テストカードナンバーURLより、クレジットカードナンバーを入力することで決済完了となる。
+　テストカードナンバー：https://docs.stripe.com/testing?testing-method=card-numbers#cards
 
-### 手順
+コンビニ支払いの場合
+　下記リンク1より環境構築を行い、2のメールアドレスを使用して決済すると即時で決済完了となる。
+ 1. stripe CLIをダウンロードし、ローカルで決済完了処理を行う方法：https://www.notion.so/stripe-CLI-13b010d5958280afbb95e61458bc8c77?pvs=4
+ 2. コンビニ決済時に使用するメール：succeed_immediately@test.com
 
-1. **リポジトリをクローン**
-   ```bash
-   git clone https://github.com/your-repo-url/freemarket-app.git
-   cd freemarket-app
-   ```
+## 使用技術
+- PHP 7.4.9
+- Laravel 8.83.27
+- MySQL 8.0.26
+- niginx 1.21.1
+- stripe 16.2.0
+- fortity 1.19.1
+- stripe CLI 1.21.11
 
-2. **依存関係をインストール**
-   ```bash
-   composer install
-   npm install && npm run dev
-   ```
+## 管理者ユーザーおよび一般ユーザーのログイン情報
+laravel環境構築が終えたら、localhost/register を検索し、ユーザー登録をしてメール認証を行うとログインできる。
+もしくは、ログイン画面(localhost/login)にて下記情報を入力すれば認証済みアカウントでログインできる。
+- メールアドレス：example@example.com
+- パスワード：password
 
-3. **環境ファイルを設定**
-   `.env.example` をコピーして `.env` ファイルを作成し、以下の設定を更新します。
-   ```env
-   DB_CONNECTION=mysql
-   DB_HOST=127.0.0.1
-   DB_PORT=3306
-   DB_DATABASE=freemarket_db
-   DB_USERNAME=root
-   DB_PASSWORD=yourpassword
-
-   STRIPE_KEY=your_stripe_key
-   STRIPE_SECRET=your_stripe_secret
-   ```
-
-4. **アプリケーションキーを生成**
-   ```bash
-   php artisan key:generate
-   ```
-
-5. **データベースのマイグレーションとシーディング**
-   ```bash
-   php artisan migrate --seed
-   ```
-
-6. **サーバーを起動**
-   ```bash
-   php artisan serve
-   ```
-
-7. **ブラウザでアクセス**
-   デフォルトでは、以下の URL にアクセスできます。
-   ```
-   http://127.0.0.1:8000
-   ```
-
----
-
-## 使用方法
-
-### ユーザー機能
-
-1. **登録とログイン**
-   - ユーザーは登録後にプロフィールを編集可能。
-   
-2. **商品出品**
-   - 「出品」ボタンから商品情報を入力し、出品できます。
-
-3. **商品購入**
-   - 購入ボタンをクリックし、配送先情報と支払い方法を選択。
-
-4. **コメント機能**
-   - 商品詳細ページでコメントを投稿可能。
-
-5. **お気に入り**
-   - 商品をお気に入りに追加して、後から確認できます。
-
----
-
-## テスト
-
-アプリケーションには、各機能のテストコードが含まれています。
-
-### テスト実行方法
-
-1. **データベースのテスト環境を設定**
-   `.env.testing` ファイルを作成し、以下を設定します。
-   ```env
-   DB_CONNECTION=mysql
-   DB_HOST=127.0.0.1
-   DB_PORT=3306
-   DB_DATABASE=freemarket_test_db
-   DB_USERNAME=root
-   DB_PASSWORD=yourpassword
-   ```
-
-2. **テスト実行**
-   ```bash
-   php artisan test
-   ```
-
----
-
-## 主な機能一覧
-
-| 機能                     | 概要                                                                                     |
-|--------------------------|------------------------------------------------------------------------------------------|
-| ユーザー登録とログイン       | ユーザーはアカウントを作成し、ログインできます。                                                     |
-| 商品出品                  | タイトル、説明、価格、カテゴリ、商品状態、画像を入力して商品を出品可能。                                     |
-| 購入機能                  | 商品購入時に配送先と支払い方法を入力。Stripe を用いたクレジットカードとコンビニ支払いをサポート。                |
-| コメント機能               | 商品に対してコメントを投稿可能。                                                                 |
-| お気に入り機能             | 商品をお気に入りに登録し、後で簡単にアクセス可能。                                                       |
-| プロフィール管理           | ユーザー名、プロフィール画像、住所などを編集可能。                                                     |
-| 検索機能                 | 特定のアイテムをキーワードで検索可能。                                                             |
-
----
-
-## デプロイ
-
-本番環境にデプロイするには、以下を参考にしてください。
-
-1. **依存関係のインストール**
-   ```
-   composer install --optimize-autoloader --no-dev
-   npm install && npm run production
-   ```
-
-2. **環境ファイルの設定**
-   `.env` ファイルを正しく設定し、Stripe キーなどの秘密情報を追加。
-
-3. **マイグレーション**
-   ```bash
-   php artisan migrate --force
-   ```
-
-4. **キャッシュをクリア**
-   ```bash
-   php artisan config:cache
-   php artisan route:cache
-   php artisan view:cache
-   ```
-
----
-
-## ライセンス
-
-このプロジェクトは [MIT License](https://opensource.org/licenses/MIT) のもとで公開されています。
-
----
-
-## 貢献
-
-改善提案やバグ報告は [GitHub Issues](https://github.com/your-repo-url/issues) にて受け付けています。Pull Request も歓迎します。
-
---- 
-
-必要に応じて、この README をカスタマイズしてプロジェクトに適した内容を追加してください。
+## URL
+- 開発環境 : [http://localhost](http://localhost/)
+- phpMyAdmin : [http://localhost:8080/](http://localhost:8080/)
+- mailhog : [http://localhost:8025](http://localhost:8025/)
