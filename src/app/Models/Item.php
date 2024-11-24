@@ -11,9 +11,11 @@ class Item extends Model
 
     protected $fillable = [
         'title',
+        'brand',
         'price',
         'item_image',
         'description',
+        'is_sold',
     ];
 
     // 出品者（ユーザー）とのリレーション
@@ -28,10 +30,9 @@ class Item extends Model
         return $this->belongsToMany(Category::class, 'item_category');
     }
 
-    // 「いいね」機能とのリレーション
-    public function likes()
+    public function likedByUsers()
     {
-        return $this->hasMany(Like::class, 'item_id');
+        return $this->belongsToMany(User::class, 'item_likes')->withTimestamps();
     }
 
     // コメントとのリレーション

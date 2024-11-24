@@ -1,2 +1,5 @@
 *
 !.gitignore
+# item_imageとprofile_imageフォルダは無視しない
+!item_image/
+!profile_image/

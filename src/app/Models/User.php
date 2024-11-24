@@ -46,7 +46,7 @@ class User extends Authenticatable implements MustVerifyEmail // インターフ
     // profileとのリレーション
     public function profile()
     {
-        return $this->hasOne(Profile::class, 'user_id','id');
+        return $this->hasOne(Profile::class, 'user_id', 'id');
     }
 
     // itemとのリレーション
@@ -55,10 +55,9 @@ class User extends Authenticatable implements MustVerifyEmail // インターフ
         return $this->hasMany(Item::class, 'seller_id');
     }
 
-    // 「いいね」機能とのリレーション
-    public function likes()
+    public function likedItems()
     {
-        return $this->hasMany(Like::class, 'user_id');
+        return $this->belongsToMany(Item::class, 'item_likes')->withTimestamps();
     }
 
     // コメントとのリレーション

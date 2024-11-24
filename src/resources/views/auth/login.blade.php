@@ -12,7 +12,7 @@
                     <div class="form-group mb-4">
                         <label for="email">メールアドレス</label>
                         <input type="text" class="form-control @error('email') is-invalid @enderror" id="email"
-                            name="email" required>
+                            name="email" value="{{ old('email') }}">
                         @error('email')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
@@ -20,11 +20,11 @@
                         @enderror
                     </div>
 
-                    <!-- メールアドレス -->
+                    <!-- パスワード -->
                     <div class="form-group mb-5">
                         <label for="password">パスワード</label>
                         <input type="password" class="form-control @error('password') is-invalid @enderror" id="password"
-                            name="password" required>
+                            name="password">
                         @error('password')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
@@ -36,10 +36,15 @@
                     <div class="d-grid mb-4">
                         <button type="submit" class="btn btn-danger">ログインする</button>
                     </div>
+                    @if (session('status'))
+                        <div class="alert alert-warning">
+                            {{ session('status') }}
+                        </div>
+                    @endif
 
                     <!-- 会員登録リンク -->
                     <div class="text-center">
-                        <a href="{{ route('register') }}" class="text-primary">会員登録はこちら</a>
+                        <a href="{{ route('register.view') }}" class="text-primary">会員登録はこちら</a>
                     </div>
                 </form>
             </div>

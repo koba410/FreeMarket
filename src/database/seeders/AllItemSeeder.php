@@ -52,6 +52,7 @@ class AllItemSeeder extends Seeder
                 'description' => 'スタイリッシュなデザインのメンズ腕時計',
                 'item_status_id' => 1,
                 'item_image' => 'item_image/Armani+Mens+Clock.jpg',
+                'is_sold' => true,
                 'categories' => ['ファッション', '家電', 'インテリア']
             ],
             [
@@ -62,7 +63,8 @@ class AllItemSeeder extends Seeder
                 'description' => '高速で信頼性の高いハードディスク',
                 'item_status_id' => 2,
                 'item_image' => 'item_image/HDD+Hard+Disk.jpg',
-                'categories' => ['レディース','メンズ','コスメ']
+                'is_sold' => false,
+                'categories' => ['レディース', 'メンズ', 'コスメ']
             ],
             [
                 'seller_id' => 3,
@@ -72,6 +74,7 @@ class AllItemSeeder extends Seeder
                 'description' => '新鮮な玉ねぎ3束のセット',
                 'item_status_id' => 3,
                 'item_image' => 'item_image/iLoveIMG+d.jpg',
+                'is_sold' => false,
                 'categories' => ['コスメ', '本']
             ],
             [
@@ -81,7 +84,8 @@ class AllItemSeeder extends Seeder
                 'price' => 4000,
                 'description' => 'クラシックなデザインの革靴',
                 'item_status_id' => 4,
-                'item_image' => 'item_image/Leather+Shoes+item+Photo.jpg',
+                'item_image' => 'item_image/Leather+Shoes+Product+Photo.jpg',
+                'is_sold' => false,
                 'categories' => ['スポーツ', 'ハンドメイド']
             ],
             [
@@ -92,6 +96,7 @@ class AllItemSeeder extends Seeder
                 'description' => '高性能なノートパソコン',
                 'item_status_id' => 1,
                 'item_image' => 'item_image/Living+Room+Laptop.jpg',
+                'is_sold' => false,
                 'categories' => ['キッチン', 'おもちゃ']
             ],
             [
@@ -102,6 +107,7 @@ class AllItemSeeder extends Seeder
                 'description' => '高音質のレコーディング用マイク',
                 'item_status_id' => 2,
                 'item_image' => 'item_image/Music+Mic+4632231.jpg',
+                'is_sold' => false,
                 'categories' => ['ベビー・キッズ', 'ファッション']
             ],
             [
@@ -112,6 +118,7 @@ class AllItemSeeder extends Seeder
                 'description' => 'おしゃれなショルダーバッグ',
                 'item_status_id' => 3,
                 'item_image' => 'item_image/Purse+fashion+pocket.jpg',
+                'is_sold' => false,
                 'categories' => ['インテリア', 'ゲーム']
             ],
             [
@@ -122,6 +129,7 @@ class AllItemSeeder extends Seeder
                 'description' => '使いやすいタンブラー',
                 'item_status_id' => 4,
                 'item_image' => 'item_image/Tumbler+souvenir.jpg',
+                'is_sold' => false,
                 'categories' => ['ハンドメイド', 'レディース']
             ],
             [
@@ -132,6 +140,7 @@ class AllItemSeeder extends Seeder
                 'description' => '手動のコーヒーミル',
                 'item_status_id' => 1,
                 'item_image' => 'item_image/Waitress+with+Coffee+Grinder.jpg',
+                'is_sold' => false,
                 'categories' => ['ファッション', 'キッチン']
             ],
             [
@@ -142,6 +151,7 @@ class AllItemSeeder extends Seeder
                 'description' => '便利なメイクアップセット',
                 'item_status_id' => 2,
                 'item_image' => 'item_image/外出メイクアップセット.jpg',
+                'is_sold' => false,
                 'categories' => ['コスメ', 'レディース']
             ],
 
@@ -156,6 +166,7 @@ class AllItemSeeder extends Seeder
                 'description' => $itemData['description'],
                 'item_status_id' => $itemData['item_status_id'],
                 'item_image' => $itemData['item_image'], // storageのURLで取得
+                'is_sold' => $itemData['is_sold'],
             ]);
 
             // 関連するカテゴリーをアタッチ
