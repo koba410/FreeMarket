@@ -54,6 +54,7 @@
 5. `php artisan storage:link`
 6. `php artisan migrate:refresh`
 7. `php artisan db:seed`
+8. PCがwindowsの場合はこのコマンドを打つこと`sudo chmod -R 777 src/*`
 
 ### 購入完了方法
 クレジットカード支払いの場合
